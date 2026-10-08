@@ -1,0 +1,20 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1791445994715,
+      "tag": "0000_patients_rdv",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1791447739655,
+      "tag": "0001_temporary_password_gate",
+      "breakpoints": true
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+import { Link } from '@tanstack/react-router';
+import { useState } from 'react';
+import { ArrowUpRight, Menu, X, MapPin, Phone, Leaf } from 'lucide-react';
+import { AccountButton } from './account';
+import { Button } from '@/components/ui/button';
+import { cabinet } from '@/lib/cabinet';
+const links = [{ to: '/', label: 'Accueil' }, { to: '/solutions', label: 'Nos soins' }, { to: '/therapeutes', label: 'Le cabinet' }, { to: '/kinetips', label: 'Kinétips' }, { to: '/etudiants', label: 'Étudiants' }] as const;
+export function Brand() { return <Link to="/" className="brand" aria-label="RD-Kiné — Accueil">RD<span className="text-primary">—</span>Kiné<span className="brand-dot">.</span></Link>; }
+export function Header() {
+ const [open, setOpen] = useState(false);
+ return <header className="site-header"><div className="container-site header-inner"><Brand/><nav className="desktop-nav" aria-label="Navigation principale">{links.map(link => <Link key={link.to} to={link.to} activeProps={{ className: 'nav-active' }} activeOptions={{ exact: true }}>{link.label}</Link>)}</nav><AccountButton/><Button asChild variant="outline" className="contact-button"><Link to="/contact">Nous contacter <ArrowUpRight/></Link></Button><Button variant="ghost" size="icon" className="mobile-menu" aria-label={open ? 'Fermer le menu' : 'Ouvrir le menu'} onClick={() => setOpen(!open)}>{open ? <X/> : <Menu/>}</Button></div>{open && <nav className="mobile-nav" aria-label="Navigation mobile">{[...links, { to: '/contact' as const, label: 'Contact & rendez-vous' }, { to: '/espace' as const, label: 'Espace patient' }].map(link => <Link key={link.to} to={link.to} onClick={() => setOpen(false)}>{link.label}<ArrowUpRight size={16}/></Link>)}</nav>}</header>;
+}
+export function Footer() { return <footer className="site-footer"><div className="container-site footer-grid"><div><Brand/><p className="mt-5 max-w-xs">Un même lieu, plusieurs expertises.<br/>Votre santé, au cœur d’Étréchy.</p><span className="footer-eco"><Leaf size={16}/> Engagé EcoSoignant</span></div><div><h3>Retrouvons-nous</h3><p className="footer-line"><MapPin size={16}/><span>{cabinet.address}<br/>{cabinet.postal}</span></p><a href={cabinet.phoneHref} className="footer-line"><Phone size={16}/>{cabinet.phone}</a><p className="mt-4 text-xs">{cabinet.hours}</p></div><div><h3>À découvrir</h3><Link to="/solutions">Nos soins & technologies</Link><Link to="/therapeutes">Les thérapeutes</Link><Link to="/kinetips">Les derniers Kinétips</Link><Link to="/etudiants">Espace étudiants</Link></div></div><div className="container-site footer-bottom"><span>© 2026 RD-Kiné · Cabinet paramédical à Étréchy</span><span>Photographies d’illustration</span></div></footer>; }

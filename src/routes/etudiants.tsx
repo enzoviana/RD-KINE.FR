@@ -1,0 +1,6 @@
+import { createFileRoute } from '@tanstack/react-router';
+import { PageHeading, pageMeta, photos } from '@/components/site/content';
+import { Button } from '@/components/ui/button';
+import { cabinet } from '@/lib/cabinet';
+export const Route = createFileRoute('/etudiants')({head: () => pageMeta('Espace étudiants', 'Se former, comprendre et progresser en kinésithérapie avec Denis. Contactez RD-Kiné pour les modalités d’accompagnement.'), component: Students});
+function Students() {return <main><PageHeading eyebrow="Espace étudiants" title="Se former. Comprendre. Progresser." description="En kinésithérapie, l’apprentissage ne s’arrête pas aux portes du cabinet. Retrouvez l’univers de formation de Denis, même à distance."/><section className="container-site about-grid page-content"><img src={photos.care} alt="Illustration d’un échange autour de la santé" width={1024} height={768} className="about-image"/><div><h2>Apprendre avec Denis.</h2><p>Vous souhaitez en savoir plus sur l’accompagnement proposé aux étudiants ? Contactez le cabinet pour connaître les modalités et les disponibilités.</p><Button asChild className="pill-button mt-6"><a href={cabinet.phoneHref}>Appeler le cabinet</a></Button></div></section></main>;}
